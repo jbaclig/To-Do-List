@@ -4,6 +4,8 @@ import Task from '../Task';
 import Button from '../Button';
 import './index.css';
 
+require('core-js/fn/array/find-index');
+
 class List extends Component {
     constructor(props) {
         super(props);
@@ -11,10 +13,12 @@ class List extends Component {
         this.state = {
             tasks: [],
             count: 0,
+            newTaskTitle: '',
         };
 
         this.addTask = this.addTask.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
+        this.deleteTask = this.deleteTask.bind(this);
     }
 
     onInputChange(event) {
@@ -28,11 +32,13 @@ class List extends Component {
         tasks.push({
             title: title,
             key: this.state.count,
+            status: 'incomplete',
         });
         let count = this.state.count + 1;
         this.setState({ 
             tasks: tasks, 
             count: count,
+            newTaskTitle: ''
         });
     }
 
@@ -45,33 +51,36 @@ class List extends Component {
     render() {
         return (
             <div className="List">
+                { this.state.tasks.length === 0 ? (
+                    <div>No Tasks</div> ) : (
+                    this.state.tasks.map(task => 
+                        <Task 
+                            key={task.key}
+                            title={task.title} 
+                            id={task.key}
+                            status={task.status}
+                            deleteTask={this.deleteTask}
+                        /> 
+                    )
+                )}
                 <input 
                     id="taskName" 
                     type="text"
+                    placeholder="New Task"
+                    value={this.state.newTaskTitle}
                     onChange={this.onInputChange}
                 />
                 <Button
                     onClick = {() => {
-                        if(!this.state.newTaskTitle || this.state.newTaskTitle === '') {
+                        if(this.state.newTaskTitle === '') {
                             alert('New task title cannot be blank!')
                             return;
                         }
                         return this.addTask(this.state.newTaskTitle);
                     }}
                 >
-                    Add Task
+                    <i className="fa fa-plus" aria-hidden="true"></i>                
                 </Button>
-                { this.state.tasks.length === 0 ? (
-                    <div>No Tasks</div> ) : (
-                    this.state.tasks.map(task => 
-                        <div className="TaskContainer" key={task.key}>
-                            <Task title={task.title} key={task.key} />
-                            <Button onClick={() => this.deleteTask(task.key)}>
-                                delete
-                            </Button>
-                        </div>
-                    )
-                )}
             </div>
         );
     }
