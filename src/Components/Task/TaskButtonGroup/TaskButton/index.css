@@ -1,0 +1,22 @@
+.TaskButton {
+    font-size: 1.4em;
+    border: none;
+    background-color: transparent;
+    margin-left: 5px;
+}
+
+.TaskButton:hover {
+    cursor: pointer;
+}
+
+.fa-times, .fa-trash-o {
+    color: #F44336;
+}
+
+.fa-pencil, .fa-undo {
+    color: #FFC107;
+}
+
+.fa-check {
+    color: #4CAF50;
+}

@@ -7,6 +7,7 @@ const TaskButton = ({
     iconName,
 }) =>
     <Button
+        className="TaskButton"
         onClick={onClick}
     >
         <i className={`fa fa-${iconName}`} aria-hidden="true"></i>

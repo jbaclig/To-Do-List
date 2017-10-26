@@ -9,7 +9,9 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">To-Do List</h1>
         </header>
-        <List />
+        <section className="container">
+          <List />
+        </section>        
       </div>
     );
   }

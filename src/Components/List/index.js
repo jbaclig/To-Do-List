@@ -52,7 +52,7 @@ class List extends Component {
         return (
             <div className="List">
                 { this.state.tasks.length === 0 ? (
-                    <div>No Tasks</div> ) : (
+                    <div>All tasks complete!</div> ) : (
                     this.state.tasks.map(task => 
                         <Task 
                             key={task.key}
@@ -65,12 +65,14 @@ class List extends Component {
                 )}
                 <input 
                     id="taskName" 
+                    className="newTaskInput"
                     type="text"
                     placeholder="New Task"
                     value={this.state.newTaskTitle}
                     onChange={this.onInputChange}
                 />
                 <Button
+                    className="newTaskButton"
                     onClick = {() => {
                         if(this.state.newTaskTitle === '') {
                             alert('New task title cannot be blank!')

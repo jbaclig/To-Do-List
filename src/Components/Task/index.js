@@ -39,7 +39,8 @@ class Task extends Component {
         if(this.state.status === 'edit') {
             taskElement = 
                 <input 
-                    type="text" 
+                    type="text"
+                    className="Task" 
                     value={this.state.title} 
                     onChange={this.onInputChange}
                 />;        
@@ -51,7 +52,7 @@ class Task extends Component {
         }
 
         return (
-            <div className='TaskContainer'>
+            <div className="TaskContainer">
                 {taskElement}
                 <TaskButtonGroup
                     id={this.state.key}

@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '../../Button';
 import TaskButton from './TaskButton';
 import './index.css';
 
