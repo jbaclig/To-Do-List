@@ -15,10 +15,17 @@ class Task extends Component {
         this.onInputChange = this.onInputChange.bind(this);
         this.updateTaskStatus = this.updateTaskStatus.bind(this);
         this.cancelEdit = this.cancelEdit.bind(this);
+        this.onKeyPress = this.onKeyPress.bind(this);
     }
 
     onInputChange(event) {
         this.setState({ title: event.target.value });
+    }
+
+    onKeyPress(event) {
+        if(event.key === 'Enter') {
+            this.setState({ status: 'incomplete' });
+        }
     }
 
     updateTaskStatus(status) {
@@ -43,6 +50,7 @@ class Task extends Component {
                     className="Task" 
                     value={this.state.title} 
                     onChange={this.onInputChange}
+                    onKeyPress={this.onKeyPress}
                 />;        
         }
         else {

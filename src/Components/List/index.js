@@ -19,12 +19,19 @@ class List extends Component {
         this.addTask = this.addTask.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
         this.deleteTask = this.deleteTask.bind(this);
+        this.onKeyPress = this.onKeyPress.bind(this);
     }
 
     onInputChange(event) {
         this.setState({
             newTaskTitle: event.target.value
         });
+    }
+
+    onKeyPress(event) {
+        if(event.key === 'Enter') {
+            this.addTask(this.state.newTaskTitle);
+        }
     }
 
     addTask(title) {
@@ -70,6 +77,7 @@ class List extends Component {
                     placeholder="New Task"
                     value={this.state.newTaskTitle}
                     onChange={this.onInputChange}
+                    onKeyPress={this.onKeyPress}
                 />
                 <Button
                     className="newTaskButton"
