@@ -10,9 +10,6 @@ class List extends Component {
 
         this.state = {
             tasks: [],
-            /*tasks: [
-                {title: 'test', key: 1}
-            ],*/
             count: 0,
         };
 
@@ -39,6 +36,12 @@ class List extends Component {
         });
     }
 
+    deleteTask(key) {
+        this.setState((prevState, props) => ({
+            tasks: prevState.tasks.filter((task) => task.key !== key)
+        }));
+    }
+
     render() {
         return (
             <div className="List">
@@ -61,7 +64,12 @@ class List extends Component {
                 { this.state.tasks.length === 0 ? (
                     <div>No Tasks</div> ) : (
                     this.state.tasks.map(task => 
-                        <Task title={task.title} key={task.key} />
+                        <div className="TaskContainer" key={task.key}>
+                            <Task title={task.title} key={task.key} />
+                            <Button onClick={() => this.deleteTask(task.key)}>
+                                delete
+                            </Button>
+                        </div>
                     )
                 )}
             </div>

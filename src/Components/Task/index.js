@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
 
-const Task = ({ title }) => <div className="Task">{title}</div>
+const Task = ({ title }) => <span className="Task">{title}</span>
 
 export default Task;
