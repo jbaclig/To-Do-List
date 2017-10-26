@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TaskButtons from '../TaskButtons';
+import TaskButtonGroup from './TaskButtonGroup';
 import './index.css';
 
 class Task extends Component {
@@ -35,26 +35,25 @@ class Task extends Component {
     }
 
     render() {
-        let taskElement;
-        if(this.state.status === 'incomplete') {
-            taskElement = <span className="Task">{this.state.title}</span>;        
-        }
-        else if(this.state.status === 'edit') {
+        let taskElement, classString;
+        if(this.state.status === 'edit') {
             taskElement = 
                 <input 
                     type="text" 
                     value={this.state.title} 
                     onChange={this.onInputChange}
-                />;
+                />;        
         }
-        else if(this.state.status === 'complete') {
-    
-        } 
+        else {
+            if(this.state.status === 'incomplete') { classString = "Task"; }
+            else { classString = "Task complete"; }
+            taskElement = <span className={classString}>{this.state.title}</span>; 
+        }
 
         return (
             <div className='TaskContainer'>
                 {taskElement}
-                <TaskButtons
+                <TaskButtonGroup
                     id={this.state.key}
                     title={this.state.title}
                     cachedTitle={this.state.cachedTitle}
